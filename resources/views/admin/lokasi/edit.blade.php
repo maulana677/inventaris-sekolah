@@ -3,35 +3,28 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Kategori</h1>
+            <h1>Update Lokasi</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Update Category</h4>
+                <h4>Update Lokasi</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                <form action="{{ route('lokasi.update', $lokasi->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="form-group">
-                        <label for="">Nama Kategori</label>
-                        <input name="name" value="{{ $category->name }}" type="text" class="form-control"
-                            id="name">
-                        @error('name')
+                        <label for="">Nama lokasi</label>
+                        <input name="nama_lokasi" type="text" class="form-control"
+                            value="{{ old('nama_lokasi', $lokasi->nama_lokasi) }}" required>
+                        @error('nama_lokasi')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="status" id="" class="form-control">
-                            <option {{ $category->status === 1 ? 'selected' : '' }} value="1">
-                                Aktif
-                            </option>
-                            <option {{ $category->status === 0 ? 'selected' : '' }} value="0">
-                                Tidak Aktif
-                            </option>
-                        </select>
-                        @error('status')
+                        <label class="col-form-label">Deskripsi</label>
+                        <textarea name="deskripsi" class="form-control">{{ old('deskripsi', $lokasi->deskripsi) }}</textarea>
+                        @error('deskripsi')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

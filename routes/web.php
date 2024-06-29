@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\LokasiController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Middleware untuk admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('kategori', KategoriController::class);
+
     Route::resource('lokasi', LokasiController::class);
+
+    Route::resource('supplier', SupplierController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)

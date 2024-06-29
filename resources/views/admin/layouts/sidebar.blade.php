@@ -72,6 +72,14 @@
                 </li>
             @endrole
 
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['supplier.*']) }}">
+                    <a class="nav-link" href="{{ route('supplier.index') }}"><i class="fas fa-list"></i>
+                        <span>Supplier</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="dropdown {{ setSidebarActive(['admin.why-choose-us.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-stream"></i>
                     <span>Sections </span></a>
