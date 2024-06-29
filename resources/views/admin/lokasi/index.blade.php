@@ -44,14 +44,8 @@
                                         @foreach ($lokasi as $lokasis)
                                             <tr>
                                                 <td>{{ ++$loop->index }}</td>
-                                                <td>{{ $lokasis->name }}</td>
-                                                <td>
-                                                    @if ($lokasis->status == 1)
-                                                        <span class="badge badge-success">Atif</span>
-                                                    @else
-                                                        <span class="badge badge-danger">Tidak Aktif</span>
-                                                    @endif
-                                                </td>
+                                                <td>{{ $lokasis->nama_lokasi }}</td>
+                                                <td>{{ $lokasis->deskripsi }}</td>
                                                 <td>
                                                     <a href="{{ route('lokasi.edit', $lokasis->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit"></i></a>

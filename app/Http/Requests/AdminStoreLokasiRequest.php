@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminStoreCategoryRequest extends FormRequest
+class AdminStoreLokasiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class AdminStoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_kategori' => 'required|string|max:100',
+            'nama_lokasi' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
         ];
     }
@@ -30,9 +30,9 @@ class AdminStoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'nama_kategori.required' => 'Nama kategori wajib diisi',
-            'nama_kategori.string' => 'Nama kategori harus berupa teks',
-            'nama_kategori.max' => 'Nama kategori maksimal 100 karakter',
+            'nama_lokasi.required' => 'Nama Lokasi wajib diisi',
+            'nama_lokasi.string' => 'Nama Lokasi harus berupa teks',
+            'nama_lokasi.max' => 'Nama Lokasi maksimal 100 karakter',
         ];
     }
 }

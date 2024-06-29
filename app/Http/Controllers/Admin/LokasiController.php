@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreLokasiRequest;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class LokasiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminStoreLokasiRequest $request)
     {
         $lokasi = new Lokasi();
         $lokasi->nama_lokasi = $request->nama_lokasi;
