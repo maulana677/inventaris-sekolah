@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreCategoryRequest;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class KategoriController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminStoreCategoryRequest $request)
     {
         $kategori = new Kategori();
         $kategori->nama_kategori = $request->nama_kategori;
@@ -83,7 +84,7 @@ class KategoriController extends Controller
             Kategori::findOrFail($id)->delete();
             return response(['status' => 'success', 'message' => 'Data berhasil dihapus!']);
         } catch (\Exception $e) {
-            return response(['status' => 'error', 'message' => 'terjadi sesuatu!']);
+            return response(['status' => 'error', 'message' => 'Terjadi sesuatu!']);
         }
     }
 }

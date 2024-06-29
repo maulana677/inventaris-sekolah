@@ -3,29 +3,26 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Kategori</h1>
+            <h1>Lokasi</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Tambah Kategori</h4>
+                <h4>Tambah Lokasi</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('categories.store') }}" method="POST">
+                <form action="{{ route('lokasi.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="">Nama Kategori</label>
-                        <input name="name" type="text" class="form-control" id="name">
-                        @error('name')
+                        <label for="">Nama Lokasi</label>
+                        <input name="nama_lokasi" type="text" class="form-control" id="nama_lokasi">
+                        @error('nama_lokasi')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="status" id="" class="form-control">
-                            <option value="1">Aktif</option>
-                            <option value="0">Tidak Aktif</option>
-                        </select>
-                        @error('status')
+                        <label class="col-form-label">Deskripsi</label>
+                        <textarea name="deskripsi" class="form-control"></textarea>
+                        @error('body')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
