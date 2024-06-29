@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-form-label">Deskripsi</label>
                         <textarea name="deskripsi" class="form-control"></textarea>
-                        @error('body')
+                        @error('deskripsi')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

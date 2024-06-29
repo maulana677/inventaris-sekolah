@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreCategoryRequest;
+use App\Http\Requests\AdminUpdateCategoryRequest;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -64,7 +65,7 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminUpdateCategoryRequest $request, string $id)
     {
         $kategori = Kategori::findOrFail($id);
         $kategori->nama_kategori = $request->nama_kategori;
