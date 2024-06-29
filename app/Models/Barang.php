@@ -13,31 +13,31 @@ class Barang extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class);
     }
 
     public function lokasi()
     {
-        return $this->belongsTo(Lokasi::class, 'lokasi_id');
+        return $this->belongsTo(Lokasi::class);
     }
 
     public function riwayatStok()
     {
-        return $this->hasMany(RiwayatStok::class, 'barang_id');
+        return $this->hasMany(RiwayatStok::class);
     }
 
     public function barangMasuk()
     {
-        return $this->hasMany(BarangMasuk::class, 'barang_id');
+        return $this->hasMany(BarangMasuk::class);
     }
 
     public function barangKeluar()
     {
-        return $this->hasMany(BarangKeluar::class, 'barang_id');
+        return $this->hasMany(BarangKeluar::class);
     }
 
     public function peminjaman()
     {
-        return $this->hasMany(Peminjaman::class, 'barang_id');
+        return $this->hasMany(Peminjaman::class);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('total_barang_masuk');
             $table->integer('total_barang_keluar');
             $table->date('tanggal_dibuat');
-            $table->foreignId('dibuat_oleh')->constrained('users');
+            $table->foreignId('dibuat_oleh')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

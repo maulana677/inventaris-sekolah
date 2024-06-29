@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('riwayat_stoks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barang');
+            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->enum('jenis', ['masuk', 'keluar']);
