@@ -5,21 +5,20 @@
         <div class="section-header">
             <h1>Barang</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">Barang</div>
+                <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item">Semua Barang</div>
             </div>
         </div>
 
         <div class="section-body">
             <h2 class="section-title">Barang</h2>
             <p class="section-lead">
-                On this page you can see all the data.
+                Di halaman ini Anda dapat melihat semua data.
             </p>
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h4>Semua Barang</h4>
                             <div class="card-header-action">
@@ -47,27 +46,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($barang as $barang)
+                                        @foreach ($barang as $barangs)
                                             <tr>
                                                 <td>{{ ++$loop->index }}</td>
-                                                <td>{{ $barang->kode_barang }}</td>
-                                                <td>{{ $barang->nama_barang }}</td>
-                                                <td>{{ $barang->deskripsi }}</td>
-                                                <td>{{ $barang->kategori->nama_kategori }}</td>
-                                                <td>{{ $barang->lokasi->nama_lokasi }}</td>
-                                                <td>{{ $barang->jumlah }}</td>
-                                                <td>{{ $barang->tanggal_masuk }}</td>
+                                                <td>{{ $barangs->kode_barang }}</td>
+                                                <td>{{ $barangs->nama_barang }}</td>
+                                                <td>{{ $barangs->deskripsi }}</td>
+                                                <td>{{ $barangs->kategori->nama_kategori }}</td>
+                                                <td>{{ $barangs->lokasi->nama_lokasi }}</td>
+                                                <td>{{ $barangs->jumlah }}</td>
                                                 <td>
-                                                    @if ($barang->kondisi == 'baik')
+                                                    {{ \Carbon\Carbon::parse($barangs->tanggal_masuk)->translatedFormat('d F Y') }}
+                                                </td>
+                                                <td>
+                                                    @if ($barangs->kondisi == 'baik')
                                                         <span class="badge badge-success">Baik</span>
-                                                    @elseif($barang->kondisi == 'rusak')
+                                                    @elseif($barangs->kondisi == 'rusak')
                                                         <span class="badge badge-danger">Rusak</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('barang.edit', $barang->id) }}"
+                                                    <a href="{{ route('barang.edit', $barangs->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('barang.destroy', $barang->id) }}"
+                                                    <a href="{{ route('barang.destroy', $barangs->id) }}"
                                                         class="btn btn-danger delete-item"><i
                                                             class="fas fa-trash-alt"></i></a>
                                                 </td>

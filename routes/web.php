@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\Admin\BarangMasukController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\LokasiController;
@@ -32,12 +33,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('lokasi', LokasiController::class);
 
+    // Supplier
     Route::resource('supplier', SupplierController::class);
 
     // Barang
     Route::resource('barang', BarangController::class);
     // Rute untuk generate kode barang otomatis
     Route::get('barangs/generate-kode-barang', [BarangController::class, 'generateKodeBarang'])->name('barangs.generate-kode-barang');
+
+    // Barang Masuk
+    Route::resource('barang-masuk', BarangMasukController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)

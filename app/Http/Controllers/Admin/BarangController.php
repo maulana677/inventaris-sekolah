@@ -105,15 +105,10 @@ class BarangController extends Controller
     public function destroy($id)
     {
         try {
-            // Hapus data barang
-            $barang = Barang::findOrFail($id);
-            $barang->delete();
-
-            // Redirect atau tampilkan pesan sukses
-            return redirect()->route('barangs.index')->with('success', 'Barang berhasil dihapus.');
+            Barang::findOrFail($id)->delete();
+            return response(['status' => 'success', 'message' => 'Data berhasil dihapus!']);
         } catch (\Exception $e) {
-            // Tangani kesalahan jika terjadi
-            return back()->withErrors(['error' => 'Gagal menghapus barang. Silakan coba lagi.']);
+            return response(['status' => 'error', 'message' => 'Terjadi sesuatu!']);
         }
     }
 
