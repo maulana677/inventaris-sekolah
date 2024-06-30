@@ -20,6 +20,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/login')->with('error', 'You do not have access to this page.');
+        return redirect('/login')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
 }

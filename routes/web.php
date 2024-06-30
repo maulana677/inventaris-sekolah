@@ -34,7 +34,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('supplier', SupplierController::class);
 
+    // Barang
     Route::resource('barang', BarangController::class);
+    // Rute untuk generate kode barang otomatis
+    Route::get('barangs/generate-kode-barang', [BarangController::class, 'generateKodeBarang'])->name('barangs.generate-kode-barang');
 });
 
 // Route untuk semua pengguna (admin dan user)
@@ -44,4 +47,6 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     Route::resource('barang', BarangController::class);
+    // Rute untuk generate kode barang otomatis
+    Route::get('barangs/generate-kode-barang', [BarangController::class, 'generateKodeBarang'])->name('barangs.generate-kode-barang');
 });

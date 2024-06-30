@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tanggal_masuk">Tanggal Masuk</label>
+                        <label for="tanggal_masuk">Tanggal</label>
                         <input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk">
                         @error('tanggal_masuk')
                             <p class="text-danger">{{ $message }}</p>

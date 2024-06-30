@@ -57,47 +57,29 @@
             <li class="menu-header">Starter</li>
 
             @role('admin')
-                <li class="dropdown {{ setSidebarActive(['kategori.*']) }}">
-                    <a class="nav-link" href="{{ route('kategori.index') }}"><i class="fas fa-list"></i>
-                        <span>Kategori</span>
-                    </a>
+                <li class="dropdown {{ setSidebarActive(['lokasi.*', 'kategori.*', 'supplier.*']) }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-stream"></i>
+                        <span>Master </span></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ setSidebarActive(['kategori.*']) }}"><a class="nav-link"
+                                href="{{ route('kategori.index') }}">Kategori</a>
+                        </li>
+                        <li class="{{ setSidebarActive(['lokasi.*']) }}"><a class="nav-link"
+                                href="{{ route('lokasi.index') }}">Lokasi</a>
+                        </li>
+                        <li class="{{ setSidebarActive(['supplier.*']) }}"><a class="nav-link"
+                                href="{{ route('supplier.index') }}">Supplier</a>
+                        </li>
+                    </ul>
                 </li>
             @endrole
 
-            @role('admin')
-                <li class="dropdown {{ setSidebarActive(['lokasi.*']) }}">
-                    <a class="nav-link" href="{{ route('lokasi.index') }}"><i class="fas fa-list"></i>
-                        <span>Lokasi</span>
-                    </a>
-                </li>
-            @endrole
-
-            @role('admin')
-                <li class="dropdown {{ setSidebarActive(['supplier.*']) }}">
-                    <a class="nav-link" href="{{ route('supplier.index') }}"><i class="fas fa-list"></i>
-                        <span>Supplier</span>
-                    </a>
-                </li>
-            @endrole
-
-            @role('admin')
-                <li class="dropdown {{ setSidebarActive(['barang.*']) }}">
-                    <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-list"></i>
-                        <span>Barang</span>
-                    </a>
-                </li>
-            @endrole
-
-            <li class="dropdown {{ setSidebarActive(['admin.why-choose-us.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-stream"></i>
-                    <span>Sections </span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.why-choose-us.*']) }}"><a class="nav-link"
-                            href="#">Why
-                            choose us</a>
-                    </li>
-                </ul>
+            <li class="dropdown {{ setSidebarActive(['barang.*']) }}">
+                <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-list"></i>
+                    <span>Barang</span>
+                </a>
             </li>
+
             <li class="{{ setSidebarActive(['admin.setting.index']) }}"><a class="nav-link" href="#"><i
                         class="fas fa-cogs"></i>
                     <span>Settings</span></a>

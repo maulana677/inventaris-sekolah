@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreBarangRequest;
+use App\Http\Requests\AdminUpdateBarangRequest;
 use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Lokasi;
@@ -60,26 +61,45 @@ class BarangController extends Controller
 
     public function update(AdminUpdateBarangRequest $request, $id)
     {
-        try {
-            // Ambil data barang yang akan diupdate
-            $barang = Barang::findOrFail($id);
 
-            // Update data barang
+        // Ambil data barang yang akan diupdate
+        $barang = Barang::findOrFail($id);
+
+        // Update data barang
+        if ($request->has('nama_barang') && $request->nama_barang !== $barang->nama_barang) {
             $barang->nama_barang = $request->nama_barang;
-            $barang->deskripsi = $request->deskripsi;
-            $barang->kategori_id = $request->kategori_id;
-            $barang->lokasi_id = $request->lokasi_id;
-            $barang->jumlah = $request->jumlah;
-            $barang->tanggal_masuk = $request->tanggal_masuk;
-            $barang->kondisi = $request->kondisi;
-            $barang->save();
-
-            // Redirect atau tampilkan pesan sukses
-            return redirect()->route('barangs.index')->with('success', 'Barang berhasil diperbarui.');
-        } catch (\Exception $e) {
-            // Tangani kesalahan jika terjadi
-            return back()->withInput()->withErrors(['error' => 'Gagal memperbarui barang. Silakan coba lagi.']);
         }
+
+        if ($request->has('deskripsi') && $request->deskripsi !== $barang->deskripsi) {
+            $barang->deskripsi = $request->deskripsi;
+        }
+
+        if ($request->has('kategori_id') && $request->kategori_id !== $barang->kategori_id) {
+            $barang->kategori_id = $request->kategori_id;
+        }
+
+        if ($request->has('lokasi_id') && $request->lokasi_id !== $barang->lokasi_id) {
+            $barang->lokasi_id = $request->lokasi_id;
+        }
+
+        if ($request->has('jumlah') && $request->jumlah !== $barang->jumlah) {
+            $barang->jumlah = $request->jumlah;
+        }
+
+        if ($request->has('tanggal_masuk') && $request->tanggal_masuk !== $barang->tanggal_masuk) {
+            $barang->tanggal_masuk = $request->tanggal_masuk;
+        }
+
+        if ($request->has('kondisi') && $request->kondisi !== $barang->kondisi) {
+            $barang->kondisi = $request->kondisi;
+        }
+
+        $barang->save();
+
+        // Redirect atau tampilkan pesan sukses
+
+        toastr()->success('Data Berhasil Diubah!');
+        return to_route('barang.index');
     }
 
     public function destroy($id)
@@ -98,7 +118,7 @@ class BarangController extends Controller
     }
 
     // Metode untuk menghasilkan kode barang otomatis, sesuaikan dengan kebutuhan Anda
-    private function generateKodeBarang()
+    public function generateKodeBarang()
     {
         $latestBarang = Barang::latest()->first();
         $nextId = $latestBarang ? $latestBarang->id + 1 : 1;
