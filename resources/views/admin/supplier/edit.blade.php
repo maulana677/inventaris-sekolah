@@ -3,28 +3,36 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Update Kategori</h1>
+            <h1>Update Supplier</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Update Kategori</h4>
+                <h4>Update Supplier</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
+                <form action="{{ route('supplier.update', $supplier->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="form-group">
-                        <label for="">Nama Kategori</label>
-                        <input name="nama_kategori" type="text" class="form-control"
-                            value="{{ old('nama_kategori', $kategori->nama_kategori) }}" required>
-                        @error('nama_kategori')
+                        <label for="">Nama Supplier</label>
+                        <input name="nama_Supplier" type="text" class="form-control"
+                            value="{{ old('nama_supplier', $supplier->nama_supplier) }}" required>
+                        @error('nama_Supplier')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control">{{ old('deskripsi', $kategori->deskripsi) }}</textarea>
-                        @error('deskripsi')
+                        <label class="col-form-label">Alamat</label>
+                        <textarea name="alamat" class="form-control">{{ old('alamat', $supplier->alamat) }}</textarea>
+                        @error('alamat')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">No Telepon</label>
+                        <input name="telepon" type="number" class="form-control" id="telepon"
+                            value="{{ old('telepon', $supplier->telepon) }}">
+                        @error('telepon')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

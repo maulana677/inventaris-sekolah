@@ -9,8 +9,6 @@ class Barang extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_barang';
-
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);

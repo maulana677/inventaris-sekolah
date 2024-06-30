@@ -80,6 +80,14 @@
                 </li>
             @endrole
 
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['barang.*']) }}">
+                    <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-list"></i>
+                        <span>Barang</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="dropdown {{ setSidebarActive(['admin.why-choose-us.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-stream"></i>
                     <span>Sections </span></a>
@@ -87,20 +95,6 @@
                     <li class="{{ setSidebarActive(['admin.why-choose-us.*']) }}"><a class="nav-link"
                             href="#">Why
                             choose us</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="dropdown {{ setSidebarActive(['admin.category.*', 'admin.product.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-shopping-cart"></i>
-                    <span>Manage Products </span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.category.*']) }}">
-                        <a class="nav-link" href="#">Product Categories</a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.product.*']) }}">
-                        <a class="nav-link" href="#">Products</a>
                     </li>
                 </ul>
             </li>

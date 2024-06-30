@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreBarangRequest;
+use App\Models\Barang;
+use App\Models\Kategori;
+use App\Models\Lokasi;
+use Illuminate\Http\Request;
+
+class BarangController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $barang = Barang::all();
+        return view('admin.barang.index', compact('barang'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $kode_barang = $this->generateKodeBarang();
+        $kategori = Kategori::all();
+        $lokasi = Lokasi::all();
+        return view('admin.barang.create', compact('kategori', 'lokasi', 'kode_barang'));
+    }
+
+    public function store(AdminStoreBarangRequest $request)
+    {
+        // Simpan data barang
+        $barang = new Barang();
+        $barang->kode_barang = $this->generateKodeBarang();
+        $barang->nama_barang = $request->nama_barang;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->kategori_id = $request->kategori_id;
+        $barang->lokasi_id = $request->lokasi_id;
+        $barang->jumlah = $request->jumlah;
+        $barang->tanggal_masuk = $request->tanggal_masuk;
+        $barang->kondisi = $request->kondisi;
+        $barang->save();
+
+        // Redirect atau tampilkan pesan sukses
+        toastr()->success('Data Berhasil Dibuat!');
+        return redirect()->route('barang.index');
+    }
+
+    public function edit($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $kategori = Kategori::all();
+        $lokasi = Lokasi::all();
+        return view('admin.barang.edit', compact('barang', 'kategori', 'lokasi'));
+    }
+
+    public function update(AdminUpdateBarangRequest $request, $id)
+    {
+        try {
+            // Ambil data barang yang akan diupdate
+            $barang = Barang::findOrFail($id);
+
+            // Update data barang
+            $barang->nama_barang = $request->nama_barang;
+            $barang->deskripsi = $request->deskripsi;
+            $barang->kategori_id = $request->kategori_id;
+            $barang->lokasi_id = $request->lokasi_id;
+            $barang->jumlah = $request->jumlah;
+            $barang->tanggal_masuk = $request->tanggal_masuk;
+            $barang->kondisi = $request->kondisi;
+            $barang->save();
+
+            // Redirect atau tampilkan pesan sukses
+            return redirect()->route('barangs.index')->with('success', 'Barang berhasil diperbarui.');
+        } catch (\Exception $e) {
+            // Tangani kesalahan jika terjadi
+            return back()->withInput()->withErrors(['error' => 'Gagal memperbarui barang. Silakan coba lagi.']);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            // Hapus data barang
+            $barang = Barang::findOrFail($id);
+            $barang->delete();
+
+            // Redirect atau tampilkan pesan sukses
+            return redirect()->route('barangs.index')->with('success', 'Barang berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Tangani kesalahan jika terjadi
+            return back()->withErrors(['error' => 'Gagal menghapus barang. Silakan coba lagi.']);
+        }
+    }
+
+    // Metode untuk menghasilkan kode barang otomatis, sesuaikan dengan kebutuhan Anda
+    private function generateKodeBarang()
+    {
+        $latestBarang = Barang::latest()->first();
+        $nextId = $latestBarang ? $latestBarang->id + 1 : 1;
+        return 'B-' . date('ym') . sprintf('%04d', $nextId);
+    }
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreSupplierRequest;
+use App\Http\Requests\AdminUpdateSupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -61,12 +62,34 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminUpdateSupplierRequest $request, string $id)
     {
         $supplier = Supplier::findOrFail($id);
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->alamat = $request->alamat;
-        $supplier->telepon = $request->telepon;
+        // Memeriksa apakah ada perubahan pada data
+        $isChanged = false;
+
+        if ($request->has('nama_supplier') && $request->nama_supplier !== $supplier->nama_supplier) {
+            $supplier->nama_supplier = $request->nama_supplier;
+            $isChanged = true;
+        }
+
+        if ($request->has('alamat') && $request->alamat !== $supplier->alamat) {
+            $supplier->alamat = $request->alamat;
+            $isChanged = true;
+        }
+
+        if ($request->has('telepon') && $request->telepon !== $supplier->telepon) {
+            $supplier->telepon = $request->telepon;
+            $isChanged = true;
+        }
+
+        // Jika tidak ada perubahan, langsung kembali ke halaman index
+        if (!$isChanged) {
+            toastr()->info('Tidak ada perubahan data.');
+            return redirect()->route('supplier.index');
+        }
+
+        // Simpan perubahan dan tampilkan pesan sukses
         $supplier->save();
 
         toastr()->success('Data Berhasil Diubah!');

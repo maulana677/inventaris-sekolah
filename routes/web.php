@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\LokasiController;
@@ -32,6 +33,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('lokasi', LokasiController::class);
 
     Route::resource('supplier', SupplierController::class);
+
+    Route::resource('barang', BarangController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)
@@ -39,4 +42,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard.index');
     })->name('dashboard');
+
+    Route::resource('barang', BarangController::class);
 });
