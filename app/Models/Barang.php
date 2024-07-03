@@ -9,6 +9,17 @@ class Barang extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'kode_barang',
+        'nama_barang',
+        'deskripsi',
+        'kategori_id',
+        'lokasi_id',
+        'jumlah',
+        'tanggal_masuk',
+        'kondisi',
+    ];
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);

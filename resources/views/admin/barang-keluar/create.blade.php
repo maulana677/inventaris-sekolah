@@ -3,16 +3,16 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Barang Masuk</h1>
+            <h1>Tambah Barang Keluar</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">Tambah Barang Masuk</div>
+                <div class="breadcrumb-item">Tambah Barang Keluar</div>
             </div>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Barang Masuk</h2>
+            <h2 class="section-title">Barang Keluar</h2>
             <p class="section-lead">
                 Di halaman ini Anda dapat membuat postingan baru dan mengisi semua kolom.
             </p>
@@ -21,10 +21,10 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Buat Barang Masuk</h4>
+                            <h4>Buat Barang Keluar</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('barang-masuk.store') }}" method="POST">
+                            <form action="{{ route('barang-keluar.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label>Nama Barang</label>
@@ -34,18 +34,23 @@
                                             <option value="{{ $barangs->id }}">{{ $barangs->nama_barang }}</option>
                                         @endforeach
                                     </select>
+                                    @error('barang_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="supplier_id">Nama Supplier</label>
-                                    <select name="supplier_id" class="form-control select2" style="" id="supplier_id"
-                                        required>
-                                        <option disabled selected>Pilih Supplier</option>
-                                        @foreach ($supplier as $suppliers)
-                                            <option value="{{ $suppliers->id }}"
-                                                {{ old('supplier_id') == $suppliers->id ? 'selected' : '' }}>
-                                                {{ $suppliers->nama_supplier }}</option>
+                                    <label for="supplier_id">Nama User</label>
+                                    <select name="user_id" class="form-control select2" id="user_id" required>
+                                        <option disabled selected>Pilih User</option>
+                                        @foreach ($user as $users)
+                                            <option value="{{ $users->id }}"
+                                                {{ old('user_id') == $users->id ? 'selected' : '' }}>
+                                                {{ $users->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('user_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jumlah</label>
@@ -55,9 +60,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tanggal Masuk</label>
-                                    <input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk">
-                                    @error('tanggal_masuk')
+                                    <label for="">Tanggal Keluar</label>
+                                    <input name="tanggal_keluar" type="date" class="form-control" id="tanggal_keluar">
+                                    @error('tanggal_keluar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

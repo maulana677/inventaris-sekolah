@@ -79,11 +79,23 @@
                     <span>Barang</span>
                 </a>
             </li>
-            <li class="dropdown {{ setSidebarActive(['barang-masuk.*']) }}">
-                <a class="nav-link" href="{{ route('barang-masuk.index') }}"><i class="fas fa-list"></i>
-                    <span>Barang Masuk</span>
-                </a>
-            </li>
+
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['barang-masuk.*']) }}">
+                    <a class="nav-link" href="{{ route('barang-masuk.index') }}"><i class="fas fa-list"></i>
+                        <span>Barang Masuk</span>
+                    </a>
+                </li>
+            @endrole
+
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['barang-keluar.*']) }}">
+                    <a class="nav-link" href="{{ route('barang-keluar.index') }}"><i class="fas fa-list"></i>
+                        <span>Barang Keluar</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="{{ setSidebarActive(['admin.setting.index']) }}"><a class="nav-link" href="#"><i
                         class="fas fa-cogs"></i>
                     <span>Settings</span></a>

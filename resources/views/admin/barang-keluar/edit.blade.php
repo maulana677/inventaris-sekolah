@@ -3,65 +3,76 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Barang Masuk</h1>
+            <h1>Ubah Barang Masuk</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">Tambah Barang Masuk</div>
+                <div class="breadcrumb-item"><a href="#">Barang Masuk</a></div>
+                <div class="breadcrumb-item">Ubah Barang Masuk</div>
             </div>
         </div>
 
         <div class="section-body">
             <h2 class="section-title">Barang Masuk</h2>
             <p class="section-lead">
-                Di halaman ini Anda dapat membuat postingan baru dan mengisi semua kolom.
+                Di halaman ini Anda dapat mengubah data barang masuk.
             </p>
 
             <div class="row">
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Buat Barang Masuk</h4>
+                            <h4>Ubah Barang Masuk</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('barang-masuk.store') }}" method="POST">
+                            <form action="{{ route('barang-masuk.update', $barangMasuk->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label>Nama Barang</label>
                                     <select name="barang_id" class="form-control select2" id="barang_id" required>
-                                        <option disabled selected>Pilih Barang</option>
+                                        <option disabled>Pilih Barang</option>
                                         @foreach ($barang as $barangs)
-                                            <option value="{{ $barangs->id }}">{{ $barangs->nama_barang }}</option>
+                                            <option value="{{ $barangs->id }}"
+                                                {{ $barangMasuk->barang_id == $barangs->id ? 'selected' : '' }}>
+                                                {{ $barangs->nama_barang }}
+                                            </option>
                                         @endforeach
                                     </select>
+                                    @error('barang_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="supplier_id">Nama Supplier</label>
-                                    <select name="supplier_id" class="form-control select2" style="" id="supplier_id"
-                                        required>
-                                        <option disabled selected>Pilih Supplier</option>
+                                    <select name="supplier_id" class="form-control select2" id="supplier_id" required>
+                                        <option disabled>Pilih Supplier</option>
                                         @foreach ($supplier as $suppliers)
                                             <option value="{{ $suppliers->id }}"
-                                                {{ old('supplier_id') == $suppliers->id ? 'selected' : '' }}>
+                                                {{ $barangMasuk->supplier_id == $suppliers->id ? 'selected' : '' }}>
                                                 {{ $suppliers->nama_supplier }}</option>
                                         @endforeach
                                     </select>
+                                    @error('supplier_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Jumlah</label>
-                                    <input name="jumlah" type="number" class="form-control" id="jumlah">
+                                    <label for="jumlah">Jumlah</label>
+                                    <input name="jumlah" type="number" class="form-control" id="jumlah"
+                                        value="{{ $barangMasuk->jumlah }}">
                                     @error('jumlah')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tanggal Masuk</label>
-                                    <input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk">
+                                    <label for="tanggal_masuk">Tanggal Masuk</label>
+                                    <input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk"
+                                        value="{{ $barangMasuk->tanggal_masuk }}">
                                     @error('tanggal_masuk')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                             </form>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\Admin\BarangKeluarController;
 use App\Http\Controllers\Admin\BarangMasukController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
@@ -27,7 +28,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Middleware untuk admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('kategori', KategoriController::class);
 
@@ -43,6 +44,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Barang Masuk
     Route::resource('barang-masuk', BarangMasukController::class);
+
+    // Barang Keluar
+    Route::resource('barang-keluar', BarangKeluarController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)
