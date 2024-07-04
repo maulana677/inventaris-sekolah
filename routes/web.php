@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\PeminjamanController;
+use App\Http\Controllers\Admin\RiwayatStokController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Peminjaman
     Route::resource('peminjaman', PeminjamanController::class);
+
+    // Riwayat Stok
+    Route::resource('riwayat-stok', RiwayatStokController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)

@@ -19,14 +19,6 @@ class PeminjamanController extends Controller
     public function index()
     {
         $peminjaman = Peminjaman::with(['barang', 'user'])->get();
-
-        foreach ($peminjaman as $item) {
-            if ($item->status == 'dipinjam' && Carbon::now()->gt($item->tanggal_kembali)) {
-                $item->status = 'belum dikembalikan';
-                $item->save();
-            }
-        }
-
         return view('admin.peminjaman.index', compact('peminjaman'));
     }
 
@@ -51,11 +43,6 @@ class PeminjamanController extends Controller
         $peminjaman->tanggal_pinjam = $request->tanggal_pinjam;
         $peminjaman->tanggal_kembali = $request->tanggal_kembali;
         $peminjaman->status = $request->status;
-
-        if (Carbon::now()->gt($request->tanggal_kembali)) {
-            $peminjaman->status = 'belum dikembalikan';
-        }
-
         $peminjaman->save();
 
         toastr()->success('Data Berhasil Dibuat!');
@@ -94,11 +81,6 @@ class PeminjamanController extends Controller
         $peminjaman->tanggal_pinjam = $request->tanggal_pinjam;
         $peminjaman->tanggal_kembali = $request->tanggal_kembali;
         $peminjaman->status = $request->status;
-
-        if ($request->status == 'dipinjam' && Carbon::now()->gt($request->tanggal_kembali)) {
-            $peminjaman->status = 'belum dikembalikan';
-        }
-
         $peminjaman->save();
 
         toastr()->success('Data Berhasil Diubah!');

@@ -9,8 +9,6 @@ class RiwayatStok extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_riwayat';
-
     public function barang()
     {
         return $this->belongsTo(Barang::class, 'barang_id');
