@@ -31,7 +31,7 @@
                                 <table class="table table-striped" id="table">
                                     <thead>
                                         <tr>
-                                            <th class="text-left">
+                                            <th class="text-left col-1 text-nowrap">
                                                 No
                                             </th>
                                             <th>Nama Lokasi</th>
@@ -42,7 +42,7 @@
                                     <tbody>
                                         @foreach ($lokasi as $lokasis)
                                             <tr>
-                                                <td>{{ ++$loop->index }}</td>
+                                                <td class="text-left col-1 text-nowrap">{{ ++$loop->index }}</td>
                                                 <td>{{ $lokasis->nama_lokasi }}</td>
                                                 <td>{{ $lokasis->deskripsi }}</td>
                                                 <td>

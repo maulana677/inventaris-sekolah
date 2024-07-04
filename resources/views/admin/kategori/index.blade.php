@@ -31,18 +31,18 @@
                                 <table class="table table-striped" id="table">
                                     <thead>
                                         <tr>
-                                            <th class="text-left">
+                                            <th class="text-left col-1 text-nowrap">
                                                 No
                                             </th>
-                                            <th>Nama Kategori</th>
-                                            <th>Deskripsi</th>
-                                            <th>Action</th>
+                                            <th class="text-left">Nama Kategori</th>
+                                            <th class="text-left">Deskripsi</th>
+                                            <th class="text-left">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($kategori as $categories)
                                             <tr>
-                                                <td>{{ ++$loop->index }}</td>
+                                                <td class="text-left col-1 text-nowrap">{{ ++$loop->index }}</td>
                                                 <td>{{ $categories->nama_kategori }}</td>
                                                 <td>{{ $categories->deskripsi }}</td>
                                                 <td>

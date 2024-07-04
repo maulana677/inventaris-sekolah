@@ -9,7 +9,13 @@ class Peminjaman extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_peminjaman';
+    protected $fillable = [
+        'barang_id',
+        'user_id',
+        'tanggal_pinjam',
+        'tanggal_kembali',
+        'status',
+    ];
 
     public function barang()
     {

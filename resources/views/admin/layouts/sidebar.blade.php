@@ -59,7 +59,7 @@
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['lokasi.*', 'kategori.*', 'supplier.*']) }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-stream"></i>
-                        <span>Master </span></a>
+                        <span>Master Data</span></a>
                     <ul class="dropdown-menu">
                         <li class="{{ setSidebarActive(['kategori.*']) }}"><a class="nav-link"
                                 href="{{ route('kategori.index') }}">Kategori</a>
@@ -92,6 +92,14 @@
                 <li class="dropdown {{ setSidebarActive(['barang-keluar.*']) }}">
                     <a class="nav-link" href="{{ route('barang-keluar.index') }}"><i class="fas fa-list"></i>
                         <span>Barang Keluar</span>
+                    </a>
+                </li>
+            @endrole
+
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['peminjaman.*']) }}">
+                    <a class="nav-link" href="{{ route('peminjaman.index') }}"><i class="fas fa-list"></i>
+                        <span>Peminjaman</span>
                     </a>
                 </li>
             @endrole

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BarangMasukController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\LokasiController;
+use App\Http\Controllers\Admin\PeminjamanController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Barang Keluar
     Route::resource('barang-keluar', BarangKeluarController::class);
+
+    // Peminjaman
+    Route::resource('peminjaman', PeminjamanController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)
