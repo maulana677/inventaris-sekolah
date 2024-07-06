@@ -9,10 +9,17 @@ class LaporanBulanan extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_laporan';
+    protected $fillable = [
+        'bulan',
+        'tahun',
+        'total_barang_masuk',
+        'total_barang_keluar',
+        'tanggal_dibuat',
+        'dibuat_oleh',
+    ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'dibuat_oleh');
+        return $this->belongsTo(User::class);
     }
 }

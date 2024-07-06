@@ -112,6 +112,14 @@
                 </li>
             @endrole
 
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['laporan-bulanan.*']) }}">
+                    <a class="nav-link" href="{{ route('laporan-bulanan.index') }}"><i class="fas fa-list"></i>
+                        <span>Laporan Bulanan</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="{{ setSidebarActive(['admin.setting.index']) }}"><a class="nav-link" href="#"><i
                         class="fas fa-cogs"></i>
                     <span>Settings</span></a>

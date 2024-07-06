@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BarangKeluarController;
 use App\Http\Controllers\Admin\BarangMasukController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\LaporanBulananController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\PeminjamanController;
 use App\Http\Controllers\Admin\RiwayatStokController;
@@ -55,6 +56,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Riwayat Stok
     Route::resource('riwayat-stok', RiwayatStokController::class);
+
+    // Laporan Bulanan
+    Route::resource('laporan-bulanan', LaporanBulananController::class);
 });
 
 // Route untuk semua pengguna (admin dan user)
