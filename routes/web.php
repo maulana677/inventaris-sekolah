@@ -59,7 +59,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Laporan Bulanan
     Route::resource('laporan-bulanan', LaporanBulananController::class);
+    Route::get('laporan-bulanan/view/pdf', [LaporanBulananController::class, 'cetakPdf'])->name('laporan-bulanan.pdf');
 });
+
 
 // Route untuk semua pengguna (admin dan user)
 Route::middleware(['auth'])->group(function () {

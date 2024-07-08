@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\LaporanBulanan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class LaporanBulananController extends Controller
@@ -30,7 +31,22 @@ class LaporanBulananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Membuat objek baru berdasarkan model
+        $laporanBulanan = new LaporanBulanan();
+
+        // Mengisi properti model dengan data dari request
+        $laporanBulanan->bulan = $request->bulan;
+        $laporanBulanan->tahun = $request->tahun;
+        $laporanBulanan->total_barang_masuk = $request->total_barang_masuk;
+        $laporanBulanan->total_barang_keluar = $request->total_barang_keluar;
+        $laporanBulanan->tanggal_dibuat = now(); // Atau sesuai kebutuhan Anda
+        $laporanBulanan->user_id = auth()->user()->id; // Ubah sesuai dengan autentikasi yang Anda gunakan
+
+        // Simpan data ke dalam database
+        $laporanBulanan->save();
+
+        toastr()->success('Data Berhasil Dibuat!');
+        return redirect()->route('laporan-bulanan.index');
     }
 
     /**
@@ -63,5 +79,17 @@ class LaporanBulananController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function cetakPdf()
+    {
+        $laporanBulanan = LaporanBulanan::all();
+        $pdf = Pdf::loadView('admin.laporan-bulanan.laporan-bulanan-pdf', compact('laporanBulanan'));
+        return $pdf->stream('laporan_bulanan.pdf');
+
+        // $mpdf = new \Mpdf\Mpdf();
+        // $laporanBulanan = LaporanBulanan::orderBy('bulan', 'ASC')->get();
+        // $mpdf->WriteHTML(view('admin.laporan-bulanan.laporan-bulanan-pdf', compact('laporanBulanan')));
+        // $mpdf->Output();
     }
 }

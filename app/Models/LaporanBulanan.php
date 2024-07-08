@@ -15,7 +15,7 @@ class LaporanBulanan extends Model
         'total_barang_masuk',
         'total_barang_keluar',
         'tanggal_dibuat',
-        'dibuat_oleh',
+        'user_id',
     ];
 
     public function user()

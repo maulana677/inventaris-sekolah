@@ -28,6 +28,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <a href="{{ route('laporan-bulanan.pdf') }}" class="btn btn-success mb-3">Cetak Semua Data
+                                    <i class="fas fa-print"></i></a>
                                 <table class="table table-striped" id="table">
                                     <thead>
                                         <tr>
@@ -51,7 +53,7 @@
                                                 <td>{{ $laporanBulanans->total_barang_keluar }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($laporanBulanans->tanggal_dibuat)->translatedFormat('d F Y') }}
                                                 </td>
-                                                <td>{{ $laporanBulanans->dibuatOleh->name }}</td>
+                                                <td>{{ $laporanBulanans->user->name }}</td>
                                                 <td>
                                                     <a href="{{ route('laporan-bulanan.edit', $laporanBulanans->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit"></i></a>
