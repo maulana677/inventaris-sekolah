@@ -28,8 +28,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <a href="{{ route('laporan-bulanan.pdf') }}" class="btn btn-success mb-3">Cetak Semua Data
-                                    <i class="fas fa-print"></i></a>
+                                <a href="{{ route('laporan-bulanan.pdf') }}" class="btn btn-success mb-3">
+                                    <i class="fas fa-print"></i> Cetak Semua Data</a>
                                 <table class="table table-striped" id="table">
                                     <thead>
                                         <tr>

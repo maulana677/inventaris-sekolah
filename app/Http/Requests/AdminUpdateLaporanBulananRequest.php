@@ -26,8 +26,7 @@ class AdminUpdateLaporanBulananRequest extends FormRequest
             'tahun' => 'required|integer',
             'total_barang_masuk' => 'required|integer',
             'total_barang_keluar' => 'required|integer',
-            'tanggal_dibuat' => 'required|date',
-            'dibuat_oleh' => 'required|exists:users,id',
+            'tanggal_dibuat' => 'required|date'
         ];
     }
 }
