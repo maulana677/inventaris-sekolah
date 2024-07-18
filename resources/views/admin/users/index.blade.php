@@ -57,14 +57,9 @@
                                                     <a href="{{ route('users.edit', $user->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                                     @if (!$user->hasRole('admin'))
-                                                        <form action="{{ route('users.destroy', $user->id) }}"
-                                                            method="POST" class="delete-form"
-                                                            style="display:inline-block;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger delete-button"><i
-                                                                    class="fas fa-trash-alt"></i></button>
-                                                        </form>
+                                                        <a href="{{ route('users.destroy', $user->id) }}"
+                                                            class="btn btn-danger delete-item"><i
+                                                                class="fas fa-trash-alt"></i></a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -85,10 +80,9 @@
         $(document).ready(function() {
             $('#table').DataTable();
 
-            $('.delete-button').on('click', function(event) {
-                event.preventDefault();
+            $('.delete-button').on('click', function() {
                 var form = $(this).closest('form');
-                if (confirm('Are you sure you want to delete this user?')) {
+                if (confirm('Anda yakin ingin menghapus data ini?')) {
                     form.submit();
                 }
             });

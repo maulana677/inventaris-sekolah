@@ -75,14 +75,14 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
 
-            if ($user->hasRole('admin')) { // Pastikan Anda memiliki metode hasRole di model User
-                return redirect()->route('users.index')->with('error', 'Admin users cannot be deleted.');
+            if ($user->hasRole('admin')) {
+                return response()->json(['status' => 'error', 'message' => 'Admin users cannot be deleted.']);
             }
 
             $user->delete();
-            return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+            return response()->json(['status' => 'success', 'message' => 'Data Berhasil Dihapus!']);
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('error', 'Something went wrong!');
+            return response()->json(['status' => 'error', 'message' => 'Ada Sesuatu Mungkin Terjadi!']);
         }
     }
 }

@@ -44,7 +44,7 @@
             <a href="index.html">Inventaris</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">IT</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -76,21 +76,21 @@
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['users.*']) }}">
-                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-users"></i>
                         <span>Manajemen User</span>
                     </a>
                 </li>
             @endrole
 
             <li class="dropdown {{ setSidebarActive(['barang.*']) }}">
-                <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-list"></i>
+                <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-boxes"></i>
                     <span>Barang</span>
                 </a>
             </li>
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['barang-masuk.*']) }}">
-                    <a class="nav-link" href="{{ route('barang-masuk.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('barang-masuk.index') }}"><i class="fas fa-clipboard-check"></i>
                         <span>Barang Masuk</span>
                     </a>
                 </li>
@@ -98,7 +98,7 @@
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['barang-keluar.*']) }}">
-                    <a class="nav-link" href="{{ route('barang-keluar.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('barang-keluar.index') }}"><i class="fas fa-dolly-flatbed"></i>
                         <span>Barang Keluar</span>
                     </a>
                 </li>
@@ -106,7 +106,7 @@
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['peminjaman.*']) }}">
-                    <a class="nav-link" href="{{ route('peminjaman.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('peminjaman.index') }}"><i class="fas fa-stamp"></i>
                         <span>Peminjaman</span>
                     </a>
                 </li>
@@ -114,7 +114,7 @@
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['riwayat-stok.*']) }}">
-                    <a class="nav-link" href="{{ route('riwayat-stok.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('riwayat-stok.index') }}"><i class="fas fa-clipboard-list"></i>
                         <span>Riwayat Stok</span>
                     </a>
                 </li>
@@ -122,7 +122,7 @@
 
             @role('admin')
                 <li class="dropdown {{ setSidebarActive(['laporan-bulanan.*']) }}">
-                    <a class="nav-link" href="{{ route('laporan-bulanan.index') }}"><i class="fas fa-list"></i>
+                    <a class="nav-link" href="{{ route('laporan-bulanan.index') }}"><i class="fas fa-book"></i>
                         <span>Laporan Bulanan</span>
                     </a>
                 </li>

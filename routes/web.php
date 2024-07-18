@@ -37,6 +37,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Middleware untuk admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/data', [DashboardController::class, 'dashboardData'])->name('dashboard.data');
 
     Route::resource('kategori', KategoriController::class);
 
@@ -76,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard.index');
     })->name('dashboard');
+    Route::get('/dashboard/data', [DashboardController::class, 'dashboardData'])->name('dashboard.data');
+
 
     Route::resource('barang', BarangController::class);
     // Rute untuk generate kode barang otomatis
