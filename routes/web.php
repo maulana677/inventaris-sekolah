@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\PeminjamanController;
 use App\Http\Controllers\Admin\RiwayatStokController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Laporan Bulanan
     Route::resource('laporan-bulanan', LaporanBulananController::class);
     Route::get('laporan-bulanan/view/pdf', [LaporanBulananController::class, 'cetakPdf'])->name('laporan-bulanan.pdf');
+
+    // User
+    Route::resource('users', UserController::class);
 });
 
 

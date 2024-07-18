@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'user_id');

@@ -74,6 +74,14 @@
                 </li>
             @endrole
 
+            @role('admin')
+                <li class="dropdown {{ setSidebarActive(['users.*']) }}">
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-list"></i>
+                        <span>Manajemen User</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="dropdown {{ setSidebarActive(['barang.*']) }}">
                 <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-list"></i>
                     <span>Barang</span>
